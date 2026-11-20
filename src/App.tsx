@@ -297,7 +297,7 @@ export default function App() {
         <div
           role="status"
           aria-live="polite"
-          className="fixed bottom-5 right-5 z-50 max-w-sm bg-[#0F2942] text-white px-4 py-3 rounded-xl shadow-lg flex items-center justify-between gap-3 text-xs sm:text-sm"
+          className="fixed bottom-5 right-5 z-50 max-w-sm bg-ink text-white px-4 py-3 rounded-xl shadow-lg flex items-center justify-between gap-3 text-xs sm:text-sm"
         >
           <div className="flex items-center gap-2.5">
             <CheckCircle2 className="w-4 h-4 text-[#19B864] shrink-0" />
@@ -307,7 +307,7 @@ export default function App() {
             type="button"
             onClick={() => setToastMessage(null)}
             aria-label="Dismiss notification"
-            className="text-slate-300 hover:text-white p-0.5 cursor-pointer"
+            className="text-stone-300 hover:text-white p-0.5 cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
           </button>

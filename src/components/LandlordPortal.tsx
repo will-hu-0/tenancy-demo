@@ -95,15 +95,15 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
       <div className="space-y-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
               Rental Statements
             </p>
-            <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-[#0F2942]">
+            <h1 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-ink">
               Invoices &amp; Official Receipts
             </h1>
           </div>
 
-          <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg">
+          <div className="flex items-center gap-1 p-1 bg-stone-100 rounded-lg">
             {(['all', 'Paid', 'Unpaid'] as const).map((filterVal) => (
               <button
                 key={filterVal}
@@ -111,8 +111,8 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                 onClick={() => setStatusFilter(filterVal)}
                 className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors cursor-pointer ${
                   statusFilter === filterVal
-                    ? 'bg-white text-[#0F2942] shadow-sm'
-                    : 'text-slate-600 hover:text-[#0F2942]'
+                    ? 'bg-white text-ink shadow-sm'
+                    : 'text-stone-600 hover:text-ink'
                 }`}
               >
                 {filterVal === 'all' ? 'All' : filterVal === 'Paid' ? 'Paid' : 'Unpaid / Overdue'}
@@ -121,10 +121,10 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
           </div>
         </div>
 
-        <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
+        <section className="bg-white border border-line rounded-xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50/80 text-xs font-semibold text-slate-500 border-b border-[#E2E8F0]">
+              <thead className="bg-stone-50/80 text-xs font-semibold text-stone-500 border-b border-line">
                 <tr>
                   <th className="py-3.5 px-6">Document No.</th>
                   <th className="py-3.5 px-6">Property</th>
@@ -135,39 +135,39 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                   <th className="py-3.5 px-6 text-right">Download</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-stone-100">
                 {filteredInvoices.map((inv) => {
                   const isPaid = inv.status === 'Paid';
                   return (
-                    <tr key={inv.id} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3.5 px-6 font-mono text-xs font-semibold text-[#0F2942]">
+                    <tr key={inv.id} className="hover:bg-stone-50/70 transition-colors">
+                      <td className="py-3.5 px-6 font-mono text-xs font-semibold text-ink">
                         <button
                           type="button"
                           onClick={() => onPreviewDoc({ type: 'invoice', data: inv })}
-                          className="hover:text-[#1D4ED8] hover:underline cursor-pointer"
+                          className="hover:text-accent hover:underline cursor-pointer"
                         >
                           {isPaid ? inv.receiptNumber || inv.invoiceNumber : inv.invoiceNumber}
                         </button>
                       </td>
                       <td className="py-3.5 px-6">
-                        <div className="font-semibold text-[#0F2942]">{inv.propertyAddress}</div>
-                        <div className="text-xs text-slate-500">
+                        <div className="font-semibold text-ink">{inv.propertyAddress}</div>
+                        <div className="text-xs text-stone-500">
                           TA #{inv.taId} · {inv.propertyCityState}
                         </div>
                       </td>
-                      <td className="py-3.5 px-6 text-[#0F2942]">{inv.tenantName}</td>
-                      <td className="py-3.5 px-6 text-slate-600">{inv.billingMonth}</td>
+                      <td className="py-3.5 px-6 text-ink">{inv.tenantName}</td>
+                      <td className="py-3.5 px-6 text-stone-600">{inv.billingMonth}</td>
                       <td className="py-3.5 px-6">
                         <StatusIndicator status={inv.status} />
                       </td>
-                      <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-[#0F2942]">
+                      <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-ink">
                         {formatRM(inv.amount)}
                       </td>
                       <td className="py-3.5 px-6 text-right">
                         <button
                           type="button"
                           onClick={() => onDirectDownloadInvoice(inv)}
-                          className="px-3 py-1.5 text-xs font-semibold text-[#1D4ED8] bg-[#EEF4FF] hover:bg-[#E0EAFF] rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                          className="px-3 py-1.5 text-xs font-semibold text-accent bg-brand-soft hover:bg-brand-muted rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                         >
                           <Download className="w-3.5 h-3.5" />
                           <span>{isPaid ? 'Download Receipt' : 'Download Invoice'}</span>
@@ -189,32 +189,32 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
       <div className="space-y-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
               Owner Deductions &amp; Yield
             </p>
-            <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-[#0F2942]">
+            <h1 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-ink">
               Property Expenses &amp; Net Payout
             </h1>
           </div>
           <div className="text-right">
-            <div className="text-xs text-slate-500">Estimated Net Payout</div>
+            <div className="text-xs text-stone-500">Estimated Net Payout</div>
             <div className="text-2xl font-bold text-[#15803D] tabular-nums">
               {formatRM(netPayout)}
             </div>
           </div>
         </div>
 
-        <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center gap-2">
-            <Receipt className="w-4 h-4 text-[#1D4ED8]" />
-            <h2 className="text-sm font-bold text-[#0F2942]">
+        <section className="bg-white border border-line rounded-xl overflow-hidden">
+          <div className="px-6 py-4 border-b border-line flex items-center gap-2">
+            <Receipt className="w-4 h-4 text-accent" />
+            <h2 className="text-sm font-bold text-ink">
               Agency-Logged Property Expenses ({myExpenses.length})
             </h2>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50/80 text-xs font-semibold text-slate-500 border-b border-[#E2E8F0]">
+              <thead className="bg-stone-50/80 text-xs font-semibold text-stone-500 border-b border-line">
                 <tr>
                   <th className="py-3 px-6">Date</th>
                   <th className="py-3 px-6">Property</th>
@@ -223,24 +223,24 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                   <th className="py-3 px-6 text-right">Amount</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-stone-100">
                 {myExpenses.map((exp) => (
-                  <tr key={exp.id} className="hover:bg-slate-50/70 transition-colors">
-                    <td className="py-3.5 px-6 text-slate-600 tabular-nums whitespace-nowrap">
+                  <tr key={exp.id} className="hover:bg-stone-50/70 transition-colors">
+                    <td className="py-3.5 px-6 text-stone-600 tabular-nums whitespace-nowrap">
                       {formatDateMY(exp.expenseDate)}
                     </td>
                     <td className="py-3.5 px-6">
-                      <div className="font-semibold text-[#0F2942]">{exp.propertyAddress}</div>
-                      <div className="text-xs text-slate-500">
+                      <div className="font-semibold text-ink">{exp.propertyAddress}</div>
+                      <div className="text-xs text-stone-500">
                         TA #{exp.taId} · {exp.cityState}
                       </div>
                     </td>
                     <td className="py-3.5 px-6">
-                      <div className="font-medium text-[#0F2942]">{exp.category}</div>
-                      <div className="text-xs text-slate-500">{exp.description}</div>
+                      <div className="font-medium text-ink">{exp.category}</div>
+                      <div className="text-xs text-stone-500">{exp.description}</div>
                     </td>
-                    <td className="py-3.5 px-6 text-xs text-slate-600">{exp.paidBy}</td>
-                    <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-[#0F2942]">
+                    <td className="py-3.5 px-6 text-xs text-stone-600">{exp.paidBy}</td>
+                    <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-ink">
                       {formatRM(exp.amount)}
                     </td>
                   </tr>
@@ -257,64 +257,64 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+        <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
           Landlord Portal
         </p>
-        <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-[#0F2942]">
+        <h1 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-ink">
           Active Tenancies &amp; Rent Collection
         </h1>
       </div>
 
       {/* 4-Column KPI Strip */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Active Properties (TAs)</div>
-          <div className="mt-2 text-2xl font-bold text-[#0F2942] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Active Properties (TAs)</div>
+          <div className="mt-2 text-2xl font-bold text-ink tabular-nums">
             {myAgreements.length}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Managed by Heritage Realty</div>
+          <div className="mt-1 text-xs text-stone-400">Managed by Hartamas Real Estate</div>
         </div>
 
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Collected Rent</div>
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Collected Rent</div>
           <div className="mt-2 text-2xl font-bold text-[#15803D] tabular-nums">
             {formatRM(collectedAmount)}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Paid via FPX / DuitNow</div>
+          <div className="mt-1 text-xs text-stone-400">Paid via FPX / DuitNow</div>
         </div>
 
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Pending / Unpaid Rent</div>
-          <div className="mt-2 text-2xl font-bold text-[#B45309] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Pending / Unpaid Rent</div>
+          <div className="mt-2 text-2xl font-bold text-[#C2410C] tabular-nums">
             {formatRM(unpaidAmount)}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Awaiting tenant transfer</div>
+          <div className="mt-1 text-xs text-stone-400">Awaiting tenant transfer</div>
         </div>
 
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Net Payout After Expenses</div>
-          <div className="mt-2 text-2xl font-bold text-[#1D4ED8] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Net Payout After Expenses</div>
+          <div className="mt-2 text-2xl font-bold text-ink tabular-nums">
             {formatRM(netPayout)}
           </div>
-          <div className="mt-1 text-xs text-slate-400">
+          <div className="mt-1 text-xs text-stone-400">
             Less {formatRM(landlordExpensesTotal)} owner expenses
           </div>
         </div>
       </div>
 
       {/* Active TAs + Tenant Payment Status Table */}
-      <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-[#E2E8F0] flex flex-wrap items-center justify-between gap-4">
+      <section className="bg-white border border-line rounded-xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-line flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <Building2 className="w-4 h-4 text-[#1D4ED8]" />
-            <h2 className="text-sm font-bold text-[#0F2942]">
+            <Building2 className="w-4 h-4 text-accent" />
+            <h2 className="text-sm font-bold text-ink">
               Active Tenancy Agreements &amp; Tenant Status
             </h2>
           </div>
           <button
             type="button"
             onClick={() => onSelectTab('invoices')}
-            className="text-xs font-semibold text-[#1D4ED8] hover:underline cursor-pointer"
+            className="text-xs font-semibold text-accent hover:underline cursor-pointer"
           >
             All Invoices &amp; Receipts
           </button>
@@ -322,7 +322,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50/80 text-xs font-semibold text-slate-500 border-b border-[#E2E8F0]">
+            <thead className="bg-stone-50/80 text-xs font-semibold text-stone-500 border-b border-line">
               <tr>
                 <th className="py-3 px-6">Property &amp; Adjudication</th>
                 <th className="py-3 px-6">Tenant Information</th>
@@ -332,37 +332,37 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                 <th className="py-3 px-6 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-stone-100">
               {currentMonthInvoices.map(({ ta, invoice }) => {
                 const isPaid = invoice?.status === 'Paid';
                 const tenant = ta.tenants[0];
                 const tenantName = tenant?.fullName || ta.additions.partiesSummary.tenantName;
                 return (
-                  <tr key={ta.id} className="hover:bg-slate-50/70 transition-colors">
+                  <tr key={ta.id} className="hover:bg-stone-50/70 transition-colors">
                     <td className="py-4 px-6">
-                      <div className="font-semibold text-[#0F2942]">{ta.property.address}</div>
-                      <div className="text-xs font-mono text-slate-500 mt-0.5">
+                      <div className="font-semibold text-ink">{ta.property.address}</div>
+                      <div className="text-xs font-mono text-stone-500 mt-0.5">
                         TA #{ta.id} · {ta.adjudicationNo}
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      <div className="font-medium text-[#0F2942]">{tenantName}</div>
-                      <div className="text-xs text-slate-500 font-mono flex items-center gap-1 mt-0.5">
-                        <Phone className="w-3 h-3 text-slate-400" />
+                      <div className="font-medium text-ink">{tenantName}</div>
+                      <div className="text-xs text-stone-500 font-mono flex items-center gap-1 mt-0.5">
+                        <Phone className="w-3 h-3 text-stone-400" />
                         <span>{tenant?.mobileNumber}</span>
                       </div>
                     </td>
-                    <td className="py-4 px-6 text-xs text-slate-600 tabular-nums whitespace-nowrap">
+                    <td className="py-4 px-6 text-xs text-stone-600 tabular-nums whitespace-nowrap">
                       <div>
                         {formatDateMY(ta.commencementDate)} – {formatDateMY(ta.expirationDate)}
                       </div>
-                      <div className="text-slate-400 mt-0.5">{ta.property.duration} months</div>
+                      <div className="text-stone-400 mt-0.5">{ta.property.duration} months</div>
                     </td>
                     <td className="py-4 px-6">
                       {invoice ? (
                         <div>
                           <StatusIndicator status={invoice.status} />
-                          <div className="text-[11px] text-slate-500 mt-1 tabular-nums">
+                          <div className="text-[11px] text-stone-500 mt-1 tabular-nums">
                             {isPaid
                               ? `Paid ${formatDateMY(invoice.paidAt)}`
                               : `${invoice.billingMonth} · Due ${formatDateMY(invoice.dueDate)}`}
@@ -372,7 +372,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                         <StatusIndicator status="Paid" />
                       )}
                     </td>
-                    <td className="py-4 px-6 text-right font-semibold tabular-nums text-[#0F2942]">
+                    <td className="py-4 px-6 text-right font-semibold tabular-nums text-ink">
                       {formatRM(ta.property.monthlyRent, ta.property.currency)}
                     </td>
                     <td className="py-4 px-6 text-right">
@@ -380,7 +380,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                         <button
                           type="button"
                           onClick={() => setSelectedTaDetail(ta)}
-                          className="px-3 py-1.5 text-xs font-semibold text-[#0F2942] bg-white border border-[#E2E8F0] hover:bg-slate-50 rounded-lg cursor-pointer whitespace-nowrap"
+                          className="px-3 py-1.5 text-xs font-semibold text-ink bg-white border border-line hover:bg-stone-50 rounded-lg cursor-pointer whitespace-nowrap"
                         >
                           Tenant Info
                         </button>
@@ -388,7 +388,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                           <button
                             type="button"
                             onClick={() => onDirectDownloadInvoice(invoice)}
-                            className="px-3 py-1.5 text-xs font-semibold text-[#1D4ED8] bg-[#EEF4FF] hover:bg-[#E0EAFF] rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                            className="px-3 py-1.5 text-xs font-semibold text-accent bg-brand-soft hover:bg-brand-muted rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                           >
                             <Download className="w-3.5 h-3.5" />
                             <span>{isPaid ? 'Receipt' : 'Invoice'}</span>
@@ -407,15 +407,15 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
       {/* Tenant & TA Detail Modal for Landlord */}
       {selectedTaDetail && (
         <div
-          className="fixed inset-0 z-50 bg-[#0F2942]/40 backdrop-blur-[1px] flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-ink/40 backdrop-blur-[1px] flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
         >
-          <div className="bg-white border border-[#E2E8F0] rounded-xl w-full max-w-lg shadow-xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between">
+          <div className="bg-white border border-line rounded-xl w-full max-w-lg shadow-xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-line flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <UserCheck className="w-4 h-4 text-[#1D4ED8]" />
-                <h3 className="text-base font-bold text-[#0F2942]">
+                <UserCheck className="w-4 h-4 text-accent" />
+                <h3 className="text-base font-bold text-ink">
                   Tenant &amp; Tenancy Summary
                 </h3>
               </div>
@@ -423,7 +423,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                 type="button"
                 onClick={() => setSelectedTaDetail(null)}
                 aria-label="Close tenant detail"
-                className="p-2 text-slate-400 hover:text-slate-600 rounded-lg hover:bg-slate-100 cursor-pointer"
+                className="p-2 text-stone-400 hover:text-stone-600 rounded-lg hover:bg-stone-100 cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -431,43 +431,43 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
 
             <div className="p-6 space-y-4 text-sm">
               <div>
-                <div className="text-xs text-slate-500">Property</div>
-                <div className="font-bold text-[#0F2942] mt-0.5">
+                <div className="text-xs text-stone-500">Property</div>
+                <div className="font-bold text-ink mt-0.5">
                   {selectedTaDetail.property.address}
                 </div>
-                <div className="text-xs text-slate-500">
+                <div className="text-xs text-stone-500">
                   {selectedTaDetail.property.buildingType} · {selectedTaDetail.property.area} sq ft
                 </div>
               </div>
 
-              <div className="divide-y divide-slate-100 border border-[#E2E8F0] rounded-lg">
+              <div className="divide-y divide-stone-100 border border-line rounded-lg">
                 <div className="px-4 py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-500">Tenant Name</span>
-                  <span className="font-semibold text-[#0F2942]">
+                  <span className="text-stone-500">Tenant Name</span>
+                  <span className="font-semibold text-ink">
                     {selectedTaDetail.tenants[0]?.fullName}
                   </span>
                 </div>
                 <div className="px-4 py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-500">NRIC</span>
-                  <span className="font-mono text-[#0F2942]">
+                  <span className="text-stone-500">NRIC</span>
+                  <span className="font-mono text-ink">
                     {selectedTaDetail.tenants[0]?.nricNo}
                   </span>
                 </div>
                 <div className="px-4 py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-500">Mobile</span>
-                  <span className="font-mono text-[#0F2942]">
+                  <span className="text-stone-500">Mobile</span>
+                  <span className="font-mono text-ink">
                     {selectedTaDetail.tenants[0]?.mobileNumber}
                   </span>
                 </div>
                 <div className="px-4 py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-500">Tenant Address</span>
-                  <span className="text-right text-xs text-[#0F2942] max-w-[260px]">
+                  <span className="text-stone-500">Tenant Address</span>
+                  <span className="text-right text-xs text-ink max-w-[260px]">
                     {selectedTaDetail.tenants[0]?.address}
                   </span>
                 </div>
                 <div className="px-4 py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-500">Security &amp; Utility Deposits</span>
-                  <span className="font-semibold tabular-nums text-[#0F2942]">
+                  <span className="text-stone-500">Security &amp; Utility Deposits</span>
+                  <span className="font-semibold tabular-nums text-ink">
                     {formatRM(
                       selectedTaDetail.securityDeposit + selectedTaDetail.utilityDeposit,
                       selectedTaDetail.property.currency
@@ -475,15 +475,15 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                   </span>
                 </div>
                 <div className="px-4 py-2.5 flex justify-between gap-4">
-                  <span className="text-slate-500">Adjudication No.</span>
-                  <span className="font-mono text-xs text-[#0F2942]">
+                  <span className="text-stone-500">Adjudication No.</span>
+                  <span className="font-mono text-xs text-ink">
                     {selectedTaDetail.adjudicationNo}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="px-6 py-4 bg-slate-50 border-t border-[#E2E8F0] flex justify-end gap-2">
+            <div className="px-6 py-4 bg-stone-50 border-t border-line flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => {
@@ -491,7 +491,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
                   setSelectedTaDetail(null);
                   onPreviewDoc({ type: 'ta', data: ta });
                 }}
-                className="px-4 py-2 text-xs font-semibold text-[#1D4ED8] bg-[#EEF4FF] hover:bg-[#E0EAFF] rounded-lg inline-flex items-center gap-1.5 cursor-pointer"
+                className="px-4 py-2 text-xs font-semibold text-accent bg-brand-soft hover:bg-brand-muted rounded-lg inline-flex items-center gap-1.5 cursor-pointer"
               >
                 <FileText className="w-3.5 h-3.5" />
                 <span>View Full TA</span>
@@ -499,7 +499,7 @@ export const LandlordPortal: React.FC<LandlordPortalProps> = ({
               <button
                 type="button"
                 onClick={() => setSelectedTaDetail(null)}
-                className="px-4 py-2 text-xs font-semibold text-[#0F2942] bg-white border border-[#E2E8F0] hover:bg-slate-50 rounded-lg cursor-pointer"
+                className="px-4 py-2 text-xs font-semibold text-ink bg-white border border-line hover:bg-stone-50 rounded-lg cursor-pointer"
               >
                 Close
               </button>

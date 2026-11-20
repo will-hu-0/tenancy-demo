@@ -2,14 +2,38 @@
 
 @theme {
   --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Hartamas brand: charcoal ink + signature yellow */
+  --color-ink: #141414;
+  --color-ink-soft: #2B2B2B;
+  --color-brand: #FFDE00;
+  --color-brand-hover: #F2D000;
+  --color-brand-soft: #FFF9DB;
+  --color-brand-muted: #FFF1A6;
+  --color-brand-line: #F2DD6B;
+  /* Warm bronze for icons, links and figures on white (≈5.7:1) */
+  --color-accent: #8B5E00;
+
+  /* Surfaces */
+  --color-canvas: #FAFAF7;
+  --color-line: #E7E5E4;
+
+  /* Zurely (platform partner) */
+  --color-zurely: #1F47C0;
+  --color-zurely-green: #22C55E;
 }
 
 @layer base {
   html {
     font-family: var(--font-sans);
-    color: #0F2942;
-    background-color: #F7F9FC;
+    color: var(--color-ink);
+    background-color: var(--color-canvas);
+  }
+
+  h1 {
+    letter-spacing: -0.01em;
   }
 
   .tabular-nums {

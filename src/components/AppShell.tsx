@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, LogOut, Menu, User, Users, X } from 'lucide-react';
 import { UserAccount, UserRole } from '../types';
-import { ZurelyLogo } from './ZurelyLogo';
+import { BRAND, HartamasLogo, PoweredByZurely } from './BrandLogo';
 
 export interface NavItem {
   id: string;
@@ -55,11 +55,11 @@ export const AppShell: React.FC<AppShellProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#F7F9FC] flex">
+    <div className="min-h-screen bg-canvas flex">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-white border-r border-[#E2E8F0] z-30">
+      <aside className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 bg-white border-r border-line z-30">
         <div className="h-16 px-6 flex items-center border-b border-transparent">
-          <ZurelyLogo />
+          <HartamasLogo />
         </div>
 
         <nav aria-label="Primary navigation" className="flex-1 px-4 py-4 space-y-1">
@@ -73,20 +73,20 @@ export const AppShell: React.FC<AppShellProps> = ({
                 onClick={() => handleNavClick(item.id)}
                 className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm transition-colors cursor-pointer ${
                   isActive
-                    ? 'bg-[#EEF4FF] text-[#0F2942] font-semibold'
-                    : 'text-slate-600 hover:bg-slate-50 hover:text-[#0F2942] font-medium'
+                    ? 'bg-brand-soft text-ink font-semibold shadow-[inset_3px_0_0_var(--color-brand)]'
+                    : 'text-stone-600 hover:bg-stone-50 hover:text-ink font-medium'
                 }`}
               >
                 <span className="flex items-center gap-3 whitespace-nowrap">
                   <Icon
                     className={`w-4 h-4 shrink-0 ${
-                      isActive ? 'text-[#1D4ED8]' : 'text-slate-400'
+                      isActive ? 'text-accent' : 'text-stone-400'
                     }`}
                   />
                   <span>{item.label}</span>
                 </span>
                 {typeof item.badgeCount === 'number' && item.badgeCount > 0 && (
-                  <span className="text-xs font-semibold tabular-nums text-[#B45309] bg-[#FFFBEB] border border-[#FDE68A] px-2 py-0.5 rounded-md">
+                  <span className="text-xs font-semibold tabular-nums text-[#C2410C] bg-[#FFF7ED] border border-[#FED7AA] px-2 py-0.5 rounded-md">
                     {item.badgeCount}
                   </span>
                 )}
@@ -95,7 +95,8 @@ export const AppShell: React.FC<AppShellProps> = ({
           })}
         </nav>
 
-        <div className="px-4 py-5 border-t border-slate-100">
+        <div className="px-4 pt-4 pb-5 border-t border-stone-100 space-y-3">
+          <div className="px-3.5"><PoweredByZurely /></div>
           <button
             type="button"
             onClick={onLogout}
@@ -111,17 +112,17 @@ export const AppShell: React.FC<AppShellProps> = ({
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
           <div
-            className="fixed inset-0 bg-[#0F2942]/30 backdrop-blur-[1px]"
+            className="fixed inset-0 bg-ink/30 backdrop-blur-[1px]"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <aside className="relative w-72 max-w-[82vw] bg-white h-full flex flex-col border-r border-[#E2E8F0] z-10">
-            <div className="h-16 px-5 flex items-center justify-between border-b border-[#E2E8F0]">
-              <ZurelyLogo />
+          <aside className="relative w-72 max-w-[82vw] bg-white h-full flex flex-col border-r border-line z-10">
+            <div className="h-16 px-5 flex items-center justify-between border-b border-line">
+              <HartamasLogo />
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
                 aria-label="Close navigation menu"
-                className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 cursor-pointer"
+                className="p-2 rounded-lg text-stone-500 hover:bg-stone-100 cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -137,20 +138,20 @@ export const AppShell: React.FC<AppShellProps> = ({
                     onClick={() => handleNavClick(item.id)}
                     className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-sm transition-colors cursor-pointer ${
                       isActive
-                        ? 'bg-[#EEF4FF] text-[#0F2942] font-semibold'
-                        : 'text-slate-600 hover:bg-slate-50 hover:text-[#0F2942] font-medium'
+                        ? 'bg-brand-soft text-ink font-semibold shadow-[inset_3px_0_0_var(--color-brand)]'
+                        : 'text-stone-600 hover:bg-stone-50 hover:text-ink font-medium'
                     }`}
                   >
                     <span className="flex items-center gap-3">
                       <Icon
                         className={`w-4 h-4 shrink-0 ${
-                          isActive ? 'text-[#1D4ED8]' : 'text-slate-400'
+                          isActive ? 'text-accent' : 'text-stone-400'
                         }`}
                       />
                       <span>{item.label}</span>
                     </span>
                     {typeof item.badgeCount === 'number' && item.badgeCount > 0 && (
-                      <span className="text-xs font-semibold tabular-nums text-[#B45309] bg-[#FFFBEB] border border-[#FDE68A] px-2 py-0.5 rounded-md">
+                      <span className="text-xs font-semibold tabular-nums text-[#C2410C] bg-[#FFF7ED] border border-[#FED7AA] px-2 py-0.5 rounded-md">
                         {item.badgeCount}
                       </span>
                     )}
@@ -158,7 +159,8 @@ export const AppShell: React.FC<AppShellProps> = ({
                 );
               })}
             </nav>
-            <div className="px-4 py-4 border-t border-slate-100">
+            <div className="px-4 pt-4 pb-4 border-t border-stone-100 space-y-3">
+              <div className="px-3.5"><PoweredByZurely /></div>
               <button
                 type="button"
                 onClick={onLogout}
@@ -175,30 +177,30 @@ export const AppShell: React.FC<AppShellProps> = ({
       {/* Main Column */}
       <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         {/* Top Header */}
-        <header className="h-16 bg-white border-b border-[#E2E8F0] px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-4 sticky top-0 z-20">
+        <header className="h-16 bg-white border-b border-line px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-4 sticky top-0 z-20">
           <div className="flex items-center gap-3 min-w-0">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open navigation menu"
-              className="lg:hidden p-2 -ml-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer"
+              className="lg:hidden p-2 -ml-2 rounded-lg text-stone-600 hover:bg-stone-100 cursor-pointer"
             >
               <Menu className="w-5 h-5" />
             </button>
             <div className="lg:hidden">
-              <ZurelyLogo />
+              <HartamasLogo size="sm" />
             </div>
-            <div className="hidden lg:flex items-center gap-2 text-sm text-slate-500">
-              <span>TenancyMY</span>
+            <div className="hidden lg:flex items-center gap-2 text-sm text-stone-500">
+              <span>{BRAND.product}</span>
               <span aria-hidden="true">/</span>
-              <span className="font-medium text-[#0F2942]">{ROLE_DISPLAY[user.role]} Portal</span>
+              <span className="font-medium text-ink">{ROLE_DISPLAY[user.role]} Portal</span>
             </div>
           </div>
 
-          {/* Right User Menu matching Zurely screenshot */}
+          {/* Right user menu */}
           <div className="flex items-center gap-3 shrink-0" ref={dropdownRef}>
             {user.licenseNumber && (
-              <span className="hidden sm:inline-flex items-center text-xs font-medium text-[#1D4ED8] bg-[#EEF4FF] border border-[#BFDBFE] px-3 py-1.5 rounded-full whitespace-nowrap">
+              <span className="hidden sm:inline-flex items-center text-xs font-medium text-accent bg-brand-soft border border-brand-line px-3 py-1.5 rounded-full whitespace-nowrap">
                 {user.licenseNumber}
               </span>
             )}
@@ -207,45 +209,45 @@ export const AppShell: React.FC<AppShellProps> = ({
               <button
                 type="button"
                 onClick={() => setDropdownOpen((prev) => !prev)}
-                className="flex items-center gap-2.5 py-1.5 px-2 rounded-lg hover:bg-slate-50 transition-colors cursor-pointer"
+                className="flex items-center gap-2.5 py-1.5 px-2 rounded-lg hover:bg-stone-50 transition-colors cursor-pointer"
               >
-                <div className="w-9 h-9 rounded-full bg-[#E0EAFF] text-[#1D4ED8] font-bold text-xs flex items-center justify-center shrink-0">
+                <div className="w-9 h-9 rounded-full bg-brand text-ink font-bold text-xs flex items-center justify-center shrink-0">
                   {user.initials}
                 </div>
                 <div className="hidden sm:block text-left leading-tight">
-                  <div className="text-sm font-semibold text-[#0F2942] whitespace-nowrap">
+                  <div className="text-sm font-semibold text-ink whitespace-nowrap">
                     {user.name}
                   </div>
-                  <div className="text-xs text-slate-500">{ROLE_DISPLAY[user.role]}</div>
+                  <div className="text-xs text-stone-500">{ROLE_DISPLAY[user.role]}</div>
                 </div>
-                <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
+                <ChevronDown className="w-4 h-4 text-stone-400 shrink-0" />
               </button>
 
               {dropdownOpen && (
-                <div className="absolute right-0 mt-2 w-64 bg-white border border-[#E2E8F0] rounded-xl shadow-lg py-2 z-50">
-                  <div className="px-4 py-2.5 border-b border-slate-100">
-                    <div className="text-sm font-semibold text-[#0F2942] truncate">
+                <div className="absolute right-0 mt-2 w-64 bg-white border border-line rounded-xl shadow-lg py-2 z-50">
+                  <div className="px-4 py-2.5 border-b border-stone-100">
+                    <div className="text-sm font-semibold text-ink truncate">
                       {user.name}
                     </div>
-                    <div className="text-xs text-slate-500 font-mono mt-0.5">{user.phone}</div>
+                    <div className="text-xs text-stone-500 font-mono mt-0.5">{user.phone}</div>
                   </div>
 
-                  <div className="py-1 border-b border-slate-100">
+                  <div className="py-1 border-b border-stone-100">
                     <button
                       type="button"
                       onClick={() => {
                         onSelectTab('profile');
                         setDropdownOpen(false);
                       }}
-                      className="w-full px-4 py-2 text-left text-sm text-[#0F2942] hover:bg-slate-50 flex items-center gap-2.5 cursor-pointer"
+                      className="w-full px-4 py-2 text-left text-sm text-ink hover:bg-stone-50 flex items-center gap-2.5 cursor-pointer"
                     >
-                      <User className="w-4 h-4 text-slate-400" />
+                      <User className="w-4 h-4 text-stone-400" />
                       <span>My Profile</span>
                     </button>
                   </div>
 
-                  <div className="py-1.5 border-b border-slate-100">
-                    <div className="px-4 py-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                  <div className="py-1.5 border-b border-stone-100">
+                    <div className="px-4 py-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400 flex items-center gap-1.5">
                       <Users className="w-3.5 h-3.5" />
                       <span>Switch Demo Role</span>
                     </div>
@@ -257,10 +259,10 @@ export const AppShell: React.FC<AppShellProps> = ({
                           onSwitchRole(roleOption);
                           setDropdownOpen(false);
                         }}
-                        className={`w-full px-4 py-1.5 text-left text-xs flex items-center justify-between hover:bg-slate-50 cursor-pointer ${
+                        className={`w-full px-4 py-1.5 text-left text-xs flex items-center justify-between hover:bg-stone-50 cursor-pointer ${
                           user.role === roleOption
-                            ? 'font-semibold text-[#1D4ED8] bg-[#EEF4FF]/60'
-                            : 'text-slate-600'
+                            ? 'font-semibold text-accent bg-brand-soft/60'
+                            : 'text-stone-600'
                         }`}
                       >
                         <span>{ROLE_DISPLAY[roleOption]} Portal</span>

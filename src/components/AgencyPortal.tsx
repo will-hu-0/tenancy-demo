@@ -147,26 +147,26 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
       <div className="space-y-6">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
               Agency Accounting
             </p>
-            <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-[#0F2942]">
+            <h1 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-ink">
               Property Expenses
             </h1>
           </div>
           <div className="text-right">
-            <div className="text-xs text-slate-500">Total Logged Expenses</div>
-            <div className="text-xl font-bold text-[#0F2942] tabular-nums">
+            <div className="text-xs text-stone-500">Total Logged Expenses</div>
+            <div className="text-xl font-bold text-ink tabular-nums">
               {formatRM(totalExpenses)}
             </div>
           </div>
         </div>
 
         {/* Key In Expenses Form */}
-        <section className="bg-white border border-[#E2E8F0] rounded-xl p-6">
-          <div className="pb-4 border-b border-slate-100 flex items-center gap-2">
-            <Plus className="w-4 h-4 text-[#1D4ED8]" />
-            <h2 className="text-sm font-bold text-[#0F2942]">Key In New Property Expense</h2>
+        <section className="bg-white border border-line rounded-xl p-6">
+          <div className="pb-4 border-b border-stone-100 flex items-center gap-2">
+            <Plus className="w-4 h-4 text-accent" />
+            <h2 className="text-sm font-bold text-ink">Key In New Property Expense</h2>
           </div>
 
           <form
@@ -174,14 +174,14 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
             className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             <div>
-              <label htmlFor="exp-ta" className="block text-xs font-semibold text-[#0F2942] mb-1.5">
+              <label htmlFor="exp-ta" className="block text-xs font-semibold text-ink mb-1.5">
                 Property / Tenancy Agreement
               </label>
               <select
                 id="exp-ta"
                 value={selectedTaId}
                 onChange={(e) => setSelectedTaId(Number(e.target.value))}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               >
                 {activeAgreements.map((ta) => (
                   <option key={ta.id} value={ta.id}>
@@ -192,14 +192,14 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
             </div>
 
             <div>
-              <label htmlFor="exp-cat" className="block text-xs font-semibold text-[#0F2942] mb-1.5">
+              <label htmlFor="exp-cat" className="block text-xs font-semibold text-ink mb-1.5">
                 Expense Category
               </label>
               <select
                 id="exp-cat"
                 value={category}
                 onChange={(e) => setCategory(e.target.value as ExpenseCategory)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               >
                 {EXPENSE_CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -210,7 +210,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
             </div>
 
             <div>
-              <label htmlFor="exp-amt" className="block text-xs font-semibold text-[#0F2942] mb-1.5">
+              <label htmlFor="exp-amt" className="block text-xs font-semibold text-ink mb-1.5">
                 Amount (RM)
               </label>
               <input
@@ -222,12 +222,12 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 placeholder="e.g. 280.00"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] tabular-nums focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink tabular-nums focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               />
             </div>
 
             <div>
-              <label htmlFor="exp-date" className="block text-xs font-semibold text-[#0F2942] mb-1.5">
+              <label htmlFor="exp-date" className="block text-xs font-semibold text-ink mb-1.5">
                 Expense Date
               </label>
               <input
@@ -236,14 +236,14 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 required
                 value={expenseDate}
                 onChange={(e) => setExpenseDate(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] tabular-nums focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink tabular-nums focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               />
             </div>
 
             <div>
               <label
                 htmlFor="exp-paidby"
-                className="block text-xs font-semibold text-[#0F2942] mb-1.5"
+                className="block text-xs font-semibold text-ink mb-1.5"
               >
                 Borne / Paid By
               </label>
@@ -253,7 +253,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 onChange={(e) =>
                   setPaidBy(e.target.value as 'Landlord' | 'Agency (Reimbursable)')
                 }
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               >
                 <option value="Landlord">Landlord (Deduct from Rent)</option>
                 <option value="Agency (Reimbursable)">Agency (Reimbursable)</option>
@@ -263,7 +263,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
             <div>
               <label
                 htmlFor="exp-vendor"
-                className="block text-xs font-semibold text-[#0F2942] mb-1.5"
+                className="block text-xs font-semibold text-ink mb-1.5"
               >
                 Vendor / Contractor
               </label>
@@ -273,12 +273,12 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 placeholder="e.g. CoolBreeze Services"
                 value={vendorName}
                 onChange={(e) => setVendorName(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               />
             </div>
 
             <div className="sm:col-span-2">
-              <label htmlFor="exp-desc" className="block text-xs font-semibold text-[#0F2942] mb-1.5">
+              <label htmlFor="exp-desc" className="block text-xs font-semibold text-ink mb-1.5">
                 Work Description
               </label>
               <input
@@ -288,12 +288,12 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 placeholder="e.g. Replaced master bedroom water heater thermostat"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               />
             </div>
 
             <div>
-              <label htmlFor="exp-ref" className="block text-xs font-semibold text-[#0F2942] mb-1.5">
+              <label htmlFor="exp-ref" className="block text-xs font-semibold text-ink mb-1.5">
                 Vendor Receipt Ref
               </label>
               <input
@@ -302,14 +302,14 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 placeholder="e.g. INV-9042"
                 value={receiptRef}
                 onChange={(e) => setReceiptRef(e.target.value)}
-                className="w-full px-3.5 py-2.5 text-sm bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] font-mono focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/20 focus:border-[#1D4ED8]"
+                className="w-full px-3.5 py-2.5 text-sm bg-white border border-line rounded-lg text-ink font-mono focus:outline-none focus:ring-2 focus:ring-brand/70 focus:border-ink"
               />
             </div>
 
             <div className="sm:col-span-2 lg:col-span-3 flex justify-end pt-2">
               <button
                 type="submit"
-                className="px-5 py-2.5 text-sm font-semibold text-white bg-[#19B864] hover:bg-[#159E55] rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+                className="px-5 py-2.5 text-sm font-semibold text-ink bg-brand hover:bg-brand-hover rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
               >
                 <Plus className="w-4 h-4" />
                 <span>Save Expense Entry</span>
@@ -319,18 +319,18 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
         </section>
 
         {/* Expense Ledger */}
-        <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-[#E2E8F0] flex flex-wrap items-center justify-between gap-4">
+        <section className="bg-white border border-line rounded-xl overflow-hidden">
+          <div className="px-6 py-4 border-b border-line flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Receipt className="w-4 h-4 text-[#1D4ED8]" />
-              <h2 className="text-sm font-bold text-[#0F2942]">Recorded Property Expenses</h2>
+              <Receipt className="w-4 h-4 text-accent" />
+              <h2 className="text-sm font-bold text-ink">Recorded Property Expenses</h2>
             </div>
 
             <select
               aria-label="Filter expenses by property"
               value={expenseFilterTa}
               onChange={(e) => setExpenseFilterTa(e.target.value)}
-              className="px-3 py-1.5 text-xs font-medium bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942]"
+              className="px-3 py-1.5 text-xs font-medium bg-white border border-line rounded-lg text-ink"
             >
               <option value="all">All Properties</option>
               {agreements.map((ta) => (
@@ -343,7 +343,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50/80 text-xs font-semibold text-slate-500 border-b border-[#E2E8F0]">
+              <thead className="bg-stone-50/80 text-xs font-semibold text-stone-500 border-b border-line">
                 <tr>
                   <th className="py-3 px-6">Date</th>
                   <th className="py-3 px-6">Property</th>
@@ -353,33 +353,33 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                   <th className="py-3 px-6 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-stone-100">
                 {filteredExpenses.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="py-8 text-center text-sm text-slate-500">
+                    <td colSpan={6} className="py-8 text-center text-sm text-stone-500">
                       No expenses recorded for this selection yet.
                     </td>
                   </tr>
                 ) : (
                   filteredExpenses.map((exp) => (
-                    <tr key={exp.id} className="hover:bg-slate-50/70 transition-colors">
-                      <td className="py-3.5 px-6 text-slate-600 tabular-nums whitespace-nowrap">
+                    <tr key={exp.id} className="hover:bg-stone-50/70 transition-colors">
+                      <td className="py-3.5 px-6 text-stone-600 tabular-nums whitespace-nowrap">
                         {formatDateMY(exp.expenseDate)}
                       </td>
                       <td className="py-3.5 px-6">
-                        <div className="font-semibold text-[#0F2942]">{exp.propertyAddress}</div>
-                        <div className="text-xs text-slate-500">
+                        <div className="font-semibold text-ink">{exp.propertyAddress}</div>
+                        <div className="text-xs text-stone-500">
                           TA #{exp.taId} · {exp.cityState}
                         </div>
                       </td>
                       <td className="py-3.5 px-6">
-                        <div className="font-medium text-[#0F2942]">{exp.category}</div>
-                        <div className="text-xs text-slate-500">
+                        <div className="font-medium text-ink">{exp.category}</div>
+                        <div className="text-xs text-stone-500">
                           {exp.description} · <span className="font-mono">{exp.receiptRef}</span>
                         </div>
                       </td>
-                      <td className="py-3.5 px-6 text-xs text-slate-600">{exp.paidBy}</td>
-                      <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-[#0F2942]">
+                      <td className="py-3.5 px-6 text-xs text-stone-600">{exp.paidBy}</td>
+                      <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-ink">
                         {formatRM(exp.amount)}
                       </td>
                       <td className="py-3.5 px-6 text-right">
@@ -387,7 +387,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                           type="button"
                           onClick={() => onDeleteExpense(exp.id)}
                           aria-label={`Remove expense ${exp.receiptRef}`}
-                          className="p-1.5 text-slate-400 hover:text-[#DC2626] rounded-lg hover:bg-red-50 cursor-pointer"
+                          className="p-1.5 text-stone-400 hover:text-[#DC2626] rounded-lg hover:bg-red-50 cursor-pointer"
                         >
                           <Trash2 className="w-4 h-4" />
                         </button>
@@ -409,30 +409,30 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
     return (
       <div className="space-y-6">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
             Tenancy Renewal Pipeline
           </p>
-          <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-[#0F2942]">
+          <h1 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-ink">
             Expiring TAs Requiring Renewal
           </h1>
         </div>
 
-        <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between">
+        <section className="bg-white border border-line rounded-xl overflow-hidden">
+          <div className="px-6 py-4 border-b border-line flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CalendarClock className="w-4 h-4 text-[#B45309]" />
-              <h2 className="text-sm font-bold text-[#0F2942]">
+              <CalendarClock className="w-4 h-4 text-[#C2410C]" />
+              <h2 className="text-sm font-bold text-ink">
                 Expiring Within 60 Days ({expiringAgreements.length})
               </h2>
             </div>
           </div>
 
           {expiringAgreements.length === 0 ? (
-            <div className="p-10 text-center text-sm text-slate-500">
+            <div className="p-10 text-center text-sm text-stone-500">
               All expiring tenancy agreements have been renewed.
             </div>
           ) : (
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-stone-100">
               {expiringAgreements.map((ta) => {
                 const daysLeft = daysUntil(ta.expirationDate);
                 const landlordName =
@@ -442,23 +442,23 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 return (
                   <div
                     key={ta.id}
-                    className="p-6 flex flex-wrap items-center justify-between gap-4 hover:bg-slate-50/70 transition-colors"
+                    className="p-6 flex flex-wrap items-center justify-between gap-4 hover:bg-stone-50/70 transition-colors"
                   >
                     <div className="space-y-1">
                       <div className="flex flex-wrap items-center gap-2.5">
-                        <span className="font-mono text-xs font-semibold text-slate-500">
+                        <span className="font-mono text-xs font-semibold text-stone-500">
                           TA #{ta.id} · {ta.adjudicationNo}
                         </span>
                         <StatusIndicator status={ta.status} />
-                        <span className="text-xs font-semibold text-[#B45309] tabular-nums">
+                        <span className="text-xs font-semibold text-[#C2410C] tabular-nums">
                           {daysLeft} days left
                         </span>
                       </div>
-                      <h3 className="text-base font-bold text-[#0F2942]">{ta.property.address}</h3>
-                      <p className="text-xs text-slate-500">
-                        Tenant: <strong className="text-[#0F2942]">{tenantName}</strong>
+                      <h3 className="text-base font-bold text-ink">{ta.property.address}</h3>
+                      <p className="text-xs text-stone-500">
+                        Tenant: <strong className="text-ink">{tenantName}</strong>
                         <span className="mx-2" aria-hidden="true">·</span>
-                        Landlord: <strong className="text-[#0F2942]">{landlordName}</strong>
+                        Landlord: <strong className="text-ink">{landlordName}</strong>
                         <span className="mx-2" aria-hidden="true">·</span>
                         Expires {formatDateMY(ta.expirationDate)}
                       </p>
@@ -466,15 +466,15 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
 
                     <div className="flex items-center gap-4">
                       <div className="text-right">
-                        <div className="text-xs text-slate-500">Current Rent</div>
-                        <div className="text-base font-bold text-[#0F2942] tabular-nums">
+                        <div className="text-xs text-stone-500">Current Rent</div>
+                        <div className="text-base font-bold text-ink tabular-nums">
                           {formatRM(ta.property.monthlyRent, ta.property.currency)}
                         </div>
                       </div>
                       <button
                         type="button"
                         onClick={() => onOpenRenewModal(ta)}
-                        className="px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-[#1D4ED8] hover:bg-[#1E40AF] rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                        className="px-4 py-2.5 text-xs sm:text-sm font-semibold text-white bg-ink hover:bg-ink-soft rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                       >
                         <RefreshCw className="w-4 h-4" />
                         <span>Renew TA</span>
@@ -488,21 +488,21 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
         </section>
 
         {renewedAgreements.length > 0 && (
-          <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-            <div className="px-6 py-4 border-b border-[#E2E8F0]">
-              <h2 className="text-sm font-bold text-[#0F2942]">
+          <section className="bg-white border border-line rounded-xl overflow-hidden">
+            <div className="px-6 py-4 border-b border-line">
+              <h2 className="text-sm font-bold text-ink">
                 Completed Renewals ({renewedAgreements.length})
               </h2>
             </div>
-            <div className="divide-y divide-slate-100">
+            <div className="divide-y divide-stone-100">
               {renewedAgreements.map((ta) => (
                 <div key={ta.id} className="px-6 py-4 flex items-center justify-between gap-4 text-sm">
                   <div>
-                    <span className="font-mono text-xs text-slate-500 mr-2">
+                    <span className="font-mono text-xs text-stone-500 mr-2">
                       TA #{ta.id} · {ta.adjudicationNo}
                     </span>
-                    <span className="font-semibold text-[#0F2942]">{ta.property.address}</span>
-                    <span className="text-xs text-slate-500 ml-2">
+                    <span className="font-semibold text-ink">{ta.property.address}</span>
+                    <span className="text-xs text-stone-500 ml-2">
                       · {ta.tenants[0]?.fullName}
                     </span>
                   </div>
@@ -521,17 +521,17 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
             Agency Portfolio Dashboard
           </p>
-          <h1 className="mt-1 text-2xl sm:text-3xl font-bold text-[#0F2942]">
+          <h1 className="mt-1 font-display text-3xl sm:text-4xl font-bold text-ink">
             Tenancy Agreements &amp; Operations
           </h1>
         </div>
         <button
           type="button"
           onClick={() => onSelectTab('expenses')}
-          className="px-4 py-2.5 text-sm font-semibold text-white bg-[#19B864] hover:bg-[#159E55] rounded-lg inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
+          className="px-4 py-2.5 text-sm font-semibold text-ink bg-brand hover:bg-brand-hover rounded-lg inline-flex items-center gap-2 cursor-pointer whitespace-nowrap"
         >
           <Plus className="w-4 h-4" />
           <span>Key In Expense</span>
@@ -540,53 +540,53 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
 
       {/* 4-Column KPI Strip */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Active Tenancy Agreements</div>
-          <div className="mt-2 text-2xl font-bold text-[#0F2942] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Active Tenancy Agreements</div>
+          <div className="mt-2 text-2xl font-bold text-ink tabular-nums">
             {activeAgreements.length}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Creator: {user.name}</div>
+          <div className="mt-1 text-xs text-stone-400">Creator: {user.name}</div>
         </div>
 
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Expiring Soon (Needs Renew)</div>
-          <div className="mt-2 text-2xl font-bold text-[#B45309] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Expiring Soon (Needs Renew)</div>
+          <div className="mt-2 text-2xl font-bold text-[#C2410C] tabular-nums">
             {expiringAgreements.length}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Within next 60 days</div>
+          <div className="mt-1 text-xs text-stone-400">Within next 60 days</div>
         </div>
 
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Monthly Rent Portfolio</div>
-          <div className="mt-2 text-2xl font-bold text-[#1D4ED8] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Monthly Rent Portfolio</div>
+          <div className="mt-2 text-2xl font-bold text-ink tabular-nums">
             {formatRM(totalPortfolioRent)}
           </div>
-          <div className="mt-1 text-xs text-slate-400">Across Melaka &amp; Klang Valley</div>
+          <div className="mt-1 text-xs text-stone-400">Across Melaka &amp; Klang Valley</div>
         </div>
 
-        <div className="bg-white border border-[#E2E8F0] rounded-xl p-5">
-          <div className="text-xs font-medium text-slate-500">Logged Expenses</div>
-          <div className="mt-2 text-2xl font-bold text-[#0F2942] tabular-nums">
+        <div className="bg-white border border-line rounded-xl p-5">
+          <div className="text-xs font-medium text-stone-500">Logged Expenses</div>
+          <div className="mt-2 text-2xl font-bold text-ink tabular-nums">
             {formatRM(totalExpenses)}
           </div>
-          <div className="mt-1 text-xs text-slate-400">{expenses.length} recorded vouchers</div>
+          <div className="mt-1 text-xs text-stone-400">{expenses.length} recorded vouchers</div>
         </div>
       </div>
 
       {/* Expiring Soon Highlight Table */}
       {expiringAgreements.length > 0 && (
-        <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-[#E2E8F0] flex flex-wrap items-center justify-between gap-3">
+        <section className="bg-white border border-line rounded-xl overflow-hidden">
+          <div className="px-6 py-4 border-b border-line flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2">
-              <CalendarClock className="w-4 h-4 text-[#B45309]" />
-              <h2 className="text-sm font-bold text-[#0F2942]">
+              <CalendarClock className="w-4 h-4 text-[#C2410C]" />
+              <h2 className="text-sm font-bold text-ink">
                 Expiring TAs — Action Required ({expiringAgreements.length})
               </h2>
             </div>
             <button
               type="button"
               onClick={() => onSelectTab('renewals')}
-              className="text-xs font-semibold text-[#1D4ED8] hover:underline cursor-pointer"
+              className="text-xs font-semibold text-accent hover:underline cursor-pointer"
             >
               Open Renewals Queue
             </button>
@@ -594,7 +594,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50/80 text-xs font-semibold text-slate-500 border-b border-[#E2E8F0]">
+              <thead className="bg-stone-50/80 text-xs font-semibold text-stone-500 border-b border-line">
                 <tr>
                   <th className="py-3 px-6">Property &amp; Adjudication</th>
                   <th className="py-3 px-6">Tenant</th>
@@ -603,36 +603,36 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                   <th className="py-3 px-6 text-right">Action</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-stone-100">
                 {expiringAgreements.map((ta) => {
                   const daysLeft = daysUntil(ta.expirationDate);
                   return (
-                    <tr key={ta.id} className="hover:bg-slate-50/70 transition-colors">
+                    <tr key={ta.id} className="hover:bg-stone-50/70 transition-colors">
                       <td className="py-3.5 px-6">
-                        <div className="font-semibold text-[#0F2942]">{ta.property.address}</div>
-                        <div className="text-xs font-mono text-slate-500">
+                        <div className="font-semibold text-ink">{ta.property.address}</div>
+                        <div className="text-xs font-mono text-stone-500">
                           TA #{ta.id} · {ta.adjudicationNo}
                         </div>
                       </td>
-                      <td className="py-3.5 px-6 text-[#0F2942]">
+                      <td className="py-3.5 px-6 text-ink">
                         {ta.tenants[0]?.fullName || ta.additions.partiesSummary.tenantName}
                       </td>
                       <td className="py-3.5 px-6 tabular-nums">
-                        <div className="font-medium text-[#0F2942]">
+                        <div className="font-medium text-ink">
                           {formatDateMY(ta.expirationDate)}
                         </div>
-                        <div className="text-xs font-semibold text-[#B45309]">
+                        <div className="text-xs font-semibold text-[#C2410C]">
                           {daysLeft} days left
                         </div>
                       </td>
-                      <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-[#0F2942]">
+                      <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-ink">
                         {formatRM(ta.property.monthlyRent, ta.property.currency)}
                       </td>
                       <td className="py-3.5 px-6 text-right">
                         <button
                           type="button"
                           onClick={() => onOpenRenewModal(ta)}
-                          className="px-3.5 py-1.5 text-xs font-semibold text-white bg-[#1D4ED8] hover:bg-[#1E40AF] rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                          className="px-3.5 py-1.5 text-xs font-semibold text-white bg-ink hover:bg-ink-soft rounded-lg inline-flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
                         >
                           <RefreshCw className="w-3.5 h-3.5" />
                           <span>Renew TA</span>
@@ -648,26 +648,26 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
       )}
 
       {/* All Active Tenancy Agreements */}
-      <section className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-[#E2E8F0] flex flex-wrap items-center justify-between gap-4">
+      <section className="bg-white border border-line rounded-xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-line flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <FileText className="w-4 h-4 text-[#1D4ED8]" />
-            <h2 className="text-sm font-bold text-[#0F2942]">All Tenancy Agreements</h2>
+            <FileText className="w-4 h-4 text-accent" />
+            <h2 className="text-sm font-bold text-ink">All Tenancy Agreements</h2>
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
-              <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+              <Search className="w-3.5 h-3.5 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search property, tenant, adj..."
-                className="pl-8 pr-3 py-1.5 text-xs bg-white border border-[#E2E8F0] rounded-lg text-[#0F2942] placeholder:text-slate-400 focus:outline-none focus:border-[#1D4ED8]"
+                className="pl-8 pr-3 py-1.5 text-xs bg-white border border-line rounded-lg text-ink placeholder:text-stone-400 focus:outline-none focus:border-ink"
               />
             </div>
 
-            <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg">
+            <div className="flex items-center gap-1 p-1 bg-stone-100 rounded-lg">
               {(['all', 'Completed', 'Expiring Soon', 'Renewed'] as const).map((status) => (
                 <button
                   key={status}
@@ -675,8 +675,8 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                   onClick={() => setStatusFilter(status)}
                   className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer whitespace-nowrap ${
                     statusFilter === status
-                      ? 'bg-white text-[#0F2942] shadow-sm'
-                      : 'text-slate-600 hover:text-[#0F2942]'
+                      ? 'bg-white text-ink shadow-sm'
+                      : 'text-stone-600 hover:text-ink'
                   }`}
                 >
                   {status === 'all' ? 'All' : status}
@@ -688,7 +688,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50/80 text-xs font-semibold text-slate-500 border-b border-[#E2E8F0]">
+            <thead className="bg-stone-50/80 text-xs font-semibold text-stone-500 border-b border-line">
               <tr>
                 <th className="py-3 px-6">Property &amp; Adjudication</th>
                 <th className="py-3 px-6">Tenant &amp; Landlord</th>
@@ -699,7 +699,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 <th className="py-3 px-6 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-stone-100">
               {filteredAgreements.map((ta) => {
                 const rentStatus = getLatestInvoiceStatus(ta.id);
                 const landlordName =
@@ -707,18 +707,18 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                 const tenantName =
                   ta.tenants[0]?.fullName || ta.additions.partiesSummary.tenantName;
                 return (
-                  <tr key={ta.id} className="hover:bg-slate-50/70 transition-colors">
+                  <tr key={ta.id} className="hover:bg-stone-50/70 transition-colors">
                     <td className="py-3.5 px-6">
-                      <div className="font-semibold text-[#0F2942]">{ta.property.address}</div>
-                      <div className="text-xs font-mono text-slate-500">
+                      <div className="font-semibold text-ink">{ta.property.address}</div>
+                      <div className="text-xs font-mono text-stone-500">
                         TA #{ta.id} · {ta.adjudicationNo} · {ta.property.buildingType}
                       </div>
                     </td>
                     <td className="py-3.5 px-6">
-                      <div className="font-medium text-[#0F2942]">{tenantName}</div>
-                      <div className="text-xs text-slate-500">Owner: {landlordName}</div>
+                      <div className="font-medium text-ink">{tenantName}</div>
+                      <div className="text-xs text-stone-500">Owner: {landlordName}</div>
                     </td>
-                    <td className="py-3.5 px-6 text-slate-600 tabular-nums whitespace-nowrap">
+                    <td className="py-3.5 px-6 text-stone-600 tabular-nums whitespace-nowrap">
                       {formatDateMY(ta.expirationDate)}
                     </td>
                     <td className="py-3.5 px-6">
@@ -727,7 +727,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                     <td className="py-3.5 px-6">
                       <StatusIndicator status={rentStatus} />
                     </td>
-                    <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-[#0F2942]">
+                    <td className="py-3.5 px-6 text-right font-semibold tabular-nums text-ink">
                       {formatRM(ta.property.monthlyRent, ta.property.currency)}
                     </td>
                     <td className="py-3.5 px-6 text-right">
@@ -735,7 +735,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                         <button
                           type="button"
                           onClick={() => onPreviewDoc({ type: 'ta', data: ta })}
-                          className="px-2.5 py-1.5 text-xs font-semibold text-[#0F2942] bg-white border border-[#E2E8F0] hover:bg-slate-50 rounded-lg cursor-pointer"
+                          className="px-2.5 py-1.5 text-xs font-semibold text-ink bg-white border border-line hover:bg-stone-50 rounded-lg cursor-pointer"
                         >
                           View TA
                         </button>
@@ -743,7 +743,7 @@ export const AgencyPortal: React.FC<AgencyPortalProps> = ({
                           <button
                             type="button"
                             onClick={() => onOpenRenewModal(ta)}
-                            className="px-2.5 py-1.5 text-xs font-semibold text-[#1D4ED8] bg-[#EEF4FF] hover:bg-[#E0EAFF] rounded-lg cursor-pointer"
+                            className="px-2.5 py-1.5 text-xs font-semibold text-accent bg-brand-soft hover:bg-brand-muted rounded-lg cursor-pointer"
                           >
                             Renew
                           </button>

@@ -1,4 +1,32 @@
+import { BRAND_ASSETS } from '../components/BrandLogo';
 import { RentInvoice, TenancyAgreement } from '../types';
+
+// Downloaded HTML documents are opened outside the app, so the logo is embedded as a
+// data URI once it has loaded. Until then, fall back to its absolute URL.
+let hartamasLogoSrc =
+  typeof window === 'undefined'
+    ? BRAND_ASSETS.hartamasLogo
+    : new URL(BRAND_ASSETS.hartamasLogo, window.location.origin).href;
+
+if (typeof window !== 'undefined') {
+  fetch(BRAND_ASSETS.hartamasLogo)
+    .then((res) => (res.ok ? res.blob() : Promise.reject(new Error(`HTTP ${res.status}`))))
+    .then(
+      (blob) =>
+        new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = () => reject(reader.error);
+          reader.readAsDataURL(blob);
+        })
+    )
+    .then((dataUri) => {
+      hartamasLogoSrc = dataUri;
+    })
+    .catch(() => {
+      // Keep the absolute URL fallback.
+    });
+}
 
 export function formatRM(amount: number, currency = 'RM'): string {
   return `${currency} ${amount.toLocaleString('en-MY', {
@@ -49,6 +77,15 @@ export function triggerHtmlDownload(filename: string, htmlContent: string) {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
+const DOC_BRAND_CSS = `.brand { display: flex; align-items: center; gap: 10px; }
+    .brand-mark { height: 30px; width: auto; border-radius: 2px; display: block; }
+    .brand-desc { font-size: 9px; line-height: 1.3; letter-spacing: 0.24em; font-weight: 600; color: #78716C; border-left: 1px solid #D6D3D1; padding-left: 10px; }
+    .brand-sub { font-size: 13px; color: #57534E; margin-top: 8px; }
+    .powered { color: #1F47C0; font-weight: 700; }`;
+
+const docBrandHeader = () => `<div class="brand"><img class="brand-mark" src="${hartamasLogoSrc}" alt="Hartamas" /><span class="brand-desc">REAL<br/>ESTATE</span></div>
+      <div class="brand-sub">Hartamas Real Estate (Malaysia) Sdn Bhd (568877-M)</div>`;
+
 export function buildInvoiceOrReceiptHtml(invoice: RentInvoice): string {
   const isPaid = invoice.status === 'Paid';
   const docTitle = isPaid ? 'OFFICIAL RENTAL RECEIPT' : 'RENTAL TAX INVOICE';
@@ -60,27 +97,26 @@ export function buildInvoiceOrReceiptHtml(invoice: RentInvoice): string {
   <meta charset="UTF-8" />
   <title>${docTitle} - ${docRef}</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0F2942; margin: 40px; background: #fff; }
-    .header { display: flex; justify-content: space-between; border-bottom: 2px solid #0F2942; padding-bottom: 20px; margin-bottom: 28px; }
-    .brand { font-size: 22px; font-weight: 700; color: #1D4ED8; }
-    .meta { text-align: right; font-size: 13px; color: #475569; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #141414; margin: 40px; background: #fff; }
+    .header { display: flex; justify-content: space-between; border-bottom: 2px solid #141414; padding-bottom: 20px; margin-bottom: 28px; }
+    ${DOC_BRAND_CSS}
+    .meta { text-align: right; font-size: 13px; color: #57534E; }
     .title { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
     .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; font-size: 14px; }
-    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B; margin-bottom: 4px; }
+    .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #78716C; margin-bottom: 4px; }
     table { width: 100%; border-collapse: collapse; margin-bottom: 28px; }
-    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #E2E8F0; font-size: 14px; }
-    th { background: #F8FAFC; color: #475569; font-weight: 600; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #E7E5E4; font-size: 14px; }
+    th { background: #FAFAF9; color: #57534E; font-weight: 600; }
     .right { text-align: right; font-variant-numeric: tabular-nums; }
-    .total-row td { font-weight: 700; font-size: 16px; border-top: 2px solid #0F2942; border-bottom: none; }
-    .status { display: inline-block; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 12px; background: ${isPaid ? '#ECFDF5' : '#FEF3C7'}; color: ${isPaid ? '#047857' : '#B45309'}; }
-    .footer { font-size: 12px; color: #64748B; border-top: 1px solid #E2E8F0; padding-top: 16px; }
+    .total-row td { font-weight: 700; font-size: 16px; border-top: 2px solid #141414; border-bottom: none; }
+    .status { display: inline-block; padding: 4px 10px; border-radius: 6px; font-weight: 600; font-size: 12px; background: ${isPaid ? '#ECFDF5' : '#FFEDD5'}; color: ${isPaid ? '#047857' : '#C2410C'}; }
+    .footer { font-size: 12px; color: #78716C; border-top: 1px solid #E7E5E4; padding-top: 16px; }
   </style>
 </head>
 <body>
   <div class="header">
     <div>
-      <div class="brand">Heritage Realty Sdn Bhd</div>
-      <div style="font-size:13px; color:#475569; margin-top:4px;">E(1)1924 · Malaysia Tenancy Management</div>
+      ${docBrandHeader()}
     </div>
     <div class="meta">
       <div><strong>${docRef}</strong></div>
@@ -127,10 +163,10 @@ export function buildInvoiceOrReceiptHtml(invoice: RentInvoice): string {
   ${
     isPaid
       ? `<p style="font-size:13px; color:#047857; margin-bottom:24px;">Payment received on ${formatDateMY(invoice.paidAt)} via ${invoice.paymentMethod || 'FPX'} (Reference: ${invoice.paymentRef || '-'}).</p>`
-      : `<p style="font-size:13px; color:#475569; margin-bottom:24px;">Please remit payment via FPX Online Banking or DuitNow QR in the TenancyMY Tenant Portal on or before ${formatDateMY(invoice.dueDate)}.</p>`
+      : `<p style="font-size:13px; color:#57534E; margin-bottom:24px;">Please remit payment via FPX Online Banking or DuitNow QR in the Hartamas Tenancy Portal on or before ${formatDateMY(invoice.dueDate)}.</p>`
   }
   <div class="footer">
-    This is a computer-generated document issued via TenancyMY Portal Malaysia. No signature is required.
+    This is a computer-generated document issued via the Hartamas Tenancy Portal. No signature is required. &middot; Powered by <span class="powered">Zurely</span>
   </div>
 </body>
 </html>`;
@@ -145,17 +181,21 @@ export function buildTenancyAgreementHtml(ta: TenancyAgreement): string {
   <meta charset="UTF-8" />
   <title>Tenancy Agreement #${ta.id} - ${ta.adjudicationNo}</title>
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0F2942; margin: 40px; line-height: 1.6; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #141414; margin: 40px; line-height: 1.6; }
     h1 { font-size: 22px; margin-bottom: 4px; }
-    .sub { color: #475569; font-size: 13px; margin-bottom: 24px; border-bottom: 2px solid #0F2942; padding-bottom: 16px; }
+    .sub { color: #57534E; font-size: 13px; margin-bottom: 24px; border-bottom: 2px solid #141414; padding-bottom: 16px; }
     table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    th, td { padding: 10px 12px; border: 1px solid #CBD5E1; text-align: left; font-size: 13px; }
-    th { background: #F8FAFC; width: 32%; color: #334155; }
+    th, td { padding: 10px 12px; border: 1px solid #D6D3D1; text-align: left; font-size: 13px; }
+    th { background: #FAFAF9; width: 32%; color: #44403C; }
     h2 { font-size: 16px; margin-top: 24px; }
     .mono { font-family: monospace; font-size: 12px; }
+    .doc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+    .footer { font-size: 12px; color: #78716C; border-top: 1px solid #E7E5E4; padding-top: 16px; margin-top: 28px; }
+    ${DOC_BRAND_CSS}
   </style>
 </head>
 <body>
+  <div class="doc-head"><div>${docBrandHeader()}</div></div>
   <h1>${ta.type} TENANCY AGREEMENT (MALAYSIA)</h1>
   <div class="sub">Agreement ID: #${ta.id} · Adjudication No: ${ta.adjudicationNo} · Agreement Date: ${formatDateMY(ta.agreementDate)} · Status: ${ta.status}</div>
   <table>
@@ -185,6 +225,7 @@ export function buildTenancyAgreementHtml(ta: TenancyAgreement): string {
         .join('')}
     </tbody>
   </table>
+  <div class="footer">Prepared via the Hartamas Tenancy Portal &middot; Powered by <span class="powered">Zurely</span></div>
 </body>
 </html>`;
 }

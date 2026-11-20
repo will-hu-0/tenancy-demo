@@ -1,6 +1,6 @@
 {
-  "name": "Zurely Tenancy",
-  "description": "Malaysian real estate tenancy agreement portal for tenants, agencies, and landlords.",
+  "name": "Hartamas Tenancy · Powered by Zurely",
+  "description": "Hartamas Real Estate tenancy portal for tenants, negotiators and landlords, powered by Zurely.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

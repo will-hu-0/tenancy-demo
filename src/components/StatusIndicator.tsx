@@ -28,7 +28,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ status }) => {
       );
     case 'Renewed':
       return (
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1D4ED8] bg-[#EEF4FF] border border-[#BFDBFE] px-2.5 py-1 rounded-md whitespace-nowrap">
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent bg-brand-soft border border-brand-line px-2.5 py-1 rounded-md whitespace-nowrap">
           <RefreshCw className="w-3.5 h-3.5 shrink-0" />
           Renewed
         </span>
@@ -37,7 +37,7 @@ export const StatusIndicator: React.FC<StatusIndicatorProps> = ({ status }) => {
     case 'Expiring Soon':
     case 'PENDING':
       return (
-        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B45309] bg-[#FFFBEB] border border-[#FDE68A] px-2.5 py-1 rounded-md whitespace-nowrap">
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#C2410C] bg-[#FFF7ED] border border-[#FED7AA] px-2.5 py-1 rounded-md whitespace-nowrap">
           <Clock className="w-3.5 h-3.5 shrink-0" />
           {status === 'Unpaid' ? 'Due' : status === 'PENDING' ? 'Pending' : 'Expiring Soon'}
         </span>
