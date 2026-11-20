@@ -1,0 +1,6 @@
+{
+  "name": "Zurely Tenancy",
+  "description": "Malaysian real estate tenancy agreement portal for tenants, agencies, and landlords.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
