@@ -185,12 +185,6 @@ export const TenantPortal: React.FC<TenantPortalProps> = ({
                     {agreement.additions.copiesOfDuplicateStampCertCount} copy
                   </span>
                 </div>
-                <div className="py-3 flex justify-between gap-4">
-                  <span className="text-stone-500">Verification Hash</span>
-                  <span className="font-mono text-xs text-stone-600 truncate max-w-[260px]">
-                    {agreement.hash}
-                  </span>
-                </div>
               </div>
             </div>
 

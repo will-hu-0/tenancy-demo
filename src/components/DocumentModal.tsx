@@ -317,10 +317,6 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
                   </table>
                 </div>
               </div>
-
-              <div className="text-[11px] font-mono text-stone-400 break-all pt-2 border-t border-stone-100">
-                SHA-256 Hash: {doc.data.hash}
-              </div>
             </>
           )}
 

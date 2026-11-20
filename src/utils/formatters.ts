@@ -209,7 +209,6 @@ export function buildTenancyAgreementHtml(ta: TenancyAgreement): string {
     <tr><th>Utility Deposit</th><td>${formatRM(ta.utilityDeposit, ta.property.currency)}</td></tr>
     <tr><th>Duplicate Stamp Certs</th><td>${ta.additions.copiesOfDuplicateStampCertCount} copy</td></tr>
     <tr><th>Prepared By (Creator)</th><td>${ta.creator.fullName} (${ta.creator.phoneNumber})</td></tr>
-    <tr><th>Document Hash</th><td class="mono">${ta.hash}</td></tr>
   </table>
   <h2>Digital Signatories</h2>
   <table>
